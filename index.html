@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heat Stress Monitor - Worker Safety</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌡️ Heat Stress Monitor</h1>
+            <p class="subtitle">Worker Safety Assessment Tool</p>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="input">New Assessment</button>
+                <button class="tab-btn" data-tab="history">History</button>
+            </div>
+
+            <div class="input-section tab-content active" id="inputTab">
+                <h2>Input Measurements</h2>
+                <div class="input-group">
+                    <label for="workerId">
+                        <span class="label-text">Worker ID / Name</span>
+                        <span class="unit">(Optional)</span>
+                    </label>
+                    <input type="text" id="workerId" placeholder="Enter worker ID or name">
+                    <div class="input-hint">For tracking and reporting</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="ambientTemp">
+                        <span class="label-text">Ambient Temperature</span>
+                        <span class="unit">(°C)</span>
+                    </label>
+                    <input type="number" id="ambientTemp" placeholder="Enter temperature" step="0.1" min="-10" max="60">
+                    <div class="input-hint">Environment temperature</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="bodyTemp">
+                        <span class="label-text">Body Temperature</span>
+                        <span class="unit">(°C)</span>
+                    </label>
+                    <input type="number" id="bodyTemp" placeholder="Enter body temperature" step="0.1" min="35" max="42">
+                    <div class="input-hint">Core body temperature</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="pulseRate">
+                        <span class="label-text">Pulse Rate</span>
+                        <span class="unit">(BPM)</span>
+                    </label>
+                    <input type="number" id="pulseRate" placeholder="Enter pulse rate" step="1" min="40" max="200">
+                    <div class="input-hint">Heart rate in beats per minute</div>
+                </div>
+
+                <button id="calculateBtn" class="calculate-btn">Calculate Heat Stress</button>
+            </div>
+
+            <div class="history-section tab-content" id="historyTab" style="display: none;">
+                <h2>Measurement History</h2>
+                <div class="history-controls">
+                    <button id="exportCSVBtn" class="export-btn">📥 Export CSV</button>
+                    <button id="exportJSONBtn" class="export-btn">📥 Export JSON</button>
+                    <button id="clearHistoryBtn" class="clear-btn">🗑️ Clear History</button>
+                </div>
+                <div class="history-stats" id="historyStats"></div>
+                <div class="history-list" id="historyList">
+                    <p class="no-data">No measurements recorded yet.</p>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h2>Heat Stress Assessment</h2>
+                
+                <div class="risk-indicator" id="riskIndicator">
+                    <div class="risk-level" id="riskLevel"></div>
+                    <div class="risk-score" id="riskScore"></div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Heat Stress Index</div>
+                        <div class="metric-value" id="heatStressIndex">-</div>
+                        <div class="metric-description">0-10 scale</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Physiological Strain</div>
+                        <div class="metric-value" id="physiologicalStrain">-</div>
+                        <div class="metric-description">PSI Score</div>
+                    </div>
+                </div>
+
+                <div class="recommendations" id="recommendations">
+                    <h3>Safety Recommendations</h3>
+                    <ul id="recommendationsList"></ul>
+                </div>
+
+                <div class="details">
+                    <h3>Detailed Analysis</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Temperature Difference:</span>
+                        <span class="detail-value" id="tempDiff">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Cardiovascular Load:</span>
+                        <span class="detail-value" id="cardioLoad">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Environmental Risk:</span>
+                        <span class="detail-value" id="envRisk">-</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="saveBtn" class="save-btn">💾 Save Measurement</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>⚠️ This tool is for assessment purposes. Always follow workplace safety protocols.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
